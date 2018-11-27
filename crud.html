@@ -12,20 +12,19 @@
             
 </head>
 <body>
-	<h1>Crud con firebase</h1>
-	<div class="row">
-		<div class="col s6">
-			
-	<h2>Lista de contactos</h2>
+	<center>
+		<h1 class="blue white-text">Crud con firebase</h1>
+	</center>
 
+		<div class="col s12 m6">		
+			<center>
+					<h3>Create / update</h3>
+			</center>
 		</div>
-		<div class="col s6">
-			<h3>Create / update</h3>
-		
 		<div class="row ">
 	    <form class="col s12">
 	      <div class="row">
-	        <div class="input-field col s6">
+	        <div class="input-field col s12">
 	          <input placeholder="Placeholder" id="name" type="text" class="validate">
 	          <label for="name">First Name</label>
 	        </div>
@@ -33,7 +32,7 @@
 	      </div>
 
 	     	<div class="row">
-	        <div class="input-field col s6">
+	        <div class="input-field col s12">
 	          <input placeholder="Placeholder" id="email" type="email" class="validate">
 	          <label for="email">Correo </label>
 	        </div>
@@ -41,8 +40,8 @@
 	      </div>
 	      <input type="hidden" id="id">
 	      <div class="row">
-	        <div class="input-field col s6">
-	         	<input type="submit" value="enviar" class="btn">
+	        <div class="input-field col s12">
+	         	<input type="submit" value="enviar" class="btn blue white-text">
 	        </div>
 	       
 	      </div>
@@ -50,15 +49,15 @@
   </div>
         
 
-		</div>
-	</div>
+
+
 	
 	<div class="row">
-		<div class="col s6">
+		<div class="col s12 m6">
 			<h3>Read / delete</h3>
 			<ul id="contacts"></ul>
 		</div>
-		<div class="col s6">
+		<div class="col s12 m6">
 			
 			
 		</div>
@@ -91,6 +90,29 @@
   	contactsEmail = d.getElementById("email");
   	contactsId = d.getElementById("id");
   	contacts = d.getElementById("contacts");
+
+  	// create
+  	contactsForm.addEventListener("submit", e => {
+  		e.preventDefault()
+  		// alert("Procesando formulario")
+  		// detener la recarga del navegador 
+  		let id = contactsId.value || contactsRef.push().key;
+  		contactData = {
+  			name: contactsName.value,
+  			email: contactsEmail.value
+  		};
+  		updateData = {}
+  		// template script ` `  backtick
+  		updateData[`/${id}`] = contactData
+
+  		contactsRef.update(updateData)
+
+  		contactsId.value = ''
+
+  		contactsForm.reset()
+  	})
+
+
 	  })(document, console.log,firebase);
 	</script>
 </body>
