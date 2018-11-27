@@ -130,6 +130,20 @@
 
   	})	
 
+  	//EDITAR
+
+  	d.addEventListener('click', e =>{ // e es el evento
+  		let affectedNode = e.target.parentElement // detecta el pader del boton que es li
+  		// UPDATE atrget es el objeto que origino el evento,matches: coincide
+  		if (e.target.matches('button.edit')){ // solo se ejecuta cuando hay una clase edit
+  			//c('click',affectedNode);
+  			contactsName.value = affectedNode.querySelector('.name').innerText
+  			contactsEmail.value = affectedNode.querySelector('.email').innerText
+  			contactsName.value = affectedNode.id
+  		}
+  	})
+
+
 	  })(document, console.log,firebase);
 	</script>
 </body>
