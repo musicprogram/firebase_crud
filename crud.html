@@ -4,18 +4,93 @@
 	<meta charset="UTF-8">
 	<title>Crud firebase</title>	
 	
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
 </head>
 <body>
-
 	<h1>Crud con firebase</h1>
+	<div class="row">
+		<div class="col s6">
+			
 	<h2>Lista de contactos</h2>
-	<h3>Create / update</h3>
-	<h3>Read / delete</h3>
+
+		</div>
+		<div class="col s6">
+			<h3>Create / update</h3>
+		
+		<div class="row ">
+	    <form class="col s12">
+	      <div class="row">
+	        <div class="input-field col s6">
+	          <input placeholder="Placeholder" id="name" type="text" class="validate">
+	          <label for="name">First Name</label>
+	        </div>
+	       
+	      </div>
+
+	     	<div class="row">
+	        <div class="input-field col s6">
+	          <input placeholder="Placeholder" id="email" type="email" class="validate">
+	          <label for="email">Correo </label>
+	        </div>
+	       
+	      </div>
+	      <input type="hidden" id="id">
+	      <div class="row">
+	        <div class="input-field col s6">
+	         	<input type="submit" value="enviar" class="btn">
+	        </div>
+	       
+	      </div>
+	    </form>
+  </div>
+        
+
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col s6">
+			<h3>Read / delete</h3>
+			<ul id="contacts"></ul>
+		</div>
+		<div class="col s6">
+			
+			
+		</div>
+	</div>
+
+	
+	
+
+
+	
 	<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
 	<script>
 	  ;
 	  ((d,c,f) =>{
+	  const config = {
+	    apiKey: "AIzaSyAFChFJV5c4uAkRvBIdqdQPwqywtkcYDlQ",
+	    authDomain: "edfirebase-9f339.firebaseapp.com",
+	    databaseURL: "https://edfirebase-9f339.firebaseio.com",
+	    projectId: "edfirebase-9f339",
+	    storageBucket: "edfirebase-9f339.appspot.com",
+	    messagingSenderId: "810315629660"
+	  };
+  	f.initializeApp(config);
 
+  	/* iniciando la base de datos, elementos , llamando instancias de firebase */
+  	const db = f.database();
+  	contactsRef =  db.ref().child('contacts');
+  	contactsForm = d.forms[0];
+  	contactsName = d.getElementById("name");
+  	contactsEmail = d.getElementById("email");
+  	contactsId = d.getElementById("id");
+  	contacts = d.getElementById("contacts");
 	  })(document, console.log,firebase);
 	</script>
 </body>
